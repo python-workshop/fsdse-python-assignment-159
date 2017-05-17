@@ -13,4 +13,4 @@
 * Can we assume the inputs are valid?
   * No
 * Can we assume this fits memory?
-  *Yes
+  * Yes
