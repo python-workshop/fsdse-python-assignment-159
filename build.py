@@ -1,8 +1,12 @@
-def search_sorted_array(array, val, start, end):
+def search_sorted_array(array, val):
     if array is None or val is None:
-        return('array or val cannot be None')
+        raise TypeError('array or val cannot be None')
     if not array:
         return None
+    return _search_sorted_array(array, val, start=0, end=len(array) - 1)
+
+
+def _search_sorted_array(array, val, start, end):
     if end < start:
         return None
     mid = (start + end) // 2
@@ -11,25 +15,22 @@ def search_sorted_array(array, val, start, end):
     # Left side is sorted
     if array[start] < array[mid]:
         if array[start] <= val < array[mid]:
-            return search_sorted_array(array, val, start, mid - 1)
+            return _search_sorted_array(array, val, start, mid - 1)
         else:
-            return search_sorted_array(array, val, mid + 1, end)
-        # Right side is sorted
+            return _search_sorted_array(array, val, mid + 1, end)
+    # Right side is sorted
     elif array[start] > array[mid]:
         if array[mid] < val <= array[end]:
-            return search_sorted_array(array, val, mid + 1, end)
+            return _search_sorted_array(array, val, mid + 1, end)
         else:
-            return search_sorted_array(array, val, start, mid - 1)
-        # Duplicates
+            return _search_sorted_array(array, val, start, mid - 1)
+    # Duplicates
     else:
         if array[mid] != array[end]:
-            return search_sorted_array(array, val, mid + 1, end)
+            return _search_sorted_array(array, val, mid + 1, end)
         else:
-            result = search_sorted_array(array, val, start, mid - 1)
+            result = _search_sorted_array(array, val, start, mid - 1)
             if result != None:
                 return result
             else:
-                return search_sorted_array(array, val, mid + 1, end)
-
-a= [1,2,3,4,5] 
-print(search_sorted_array(a,3,1,5))
+                return _search_sorted_array(array, val, mid + 1, end)

@@ -1,5 +1,6 @@
-# fsdse-python-assignment-159
-## Find an item in a sorted, rotated array	
+# Find an element in a sorted array that has been rotated a number of times.
+
+##
 * Is the input an array of ints?
   * Yes
 * Can the input have duplicates?
